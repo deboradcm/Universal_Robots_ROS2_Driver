@@ -246,7 +246,7 @@ controller_interface::return_type ScaledJointTrajectoryController::update(const 
       if (active_goal) {
         // send feedback
         auto feedback = std::make_shared<FollowJTrajAction::Feedback>();
-        feedback->header.stamp = time;
+        
         feedback->joint_names = params_.joints;
 
         feedback->actual = state_current_;
@@ -316,7 +316,7 @@ controller_interface::return_type ScaledJointTrajectoryController::update(const 
     }
   }
 
-  publish_state(time, state_desired_, state_current_, state_error_);
+  publish_state(state_desired_, state_current_, state_error_);
   return controller_interface::return_type::OK;
 }
 
